@@ -6,6 +6,7 @@ import { getProduct, getRelatedProducts } from '../api/products'
 import { useCart } from '../contexts/CartContext'
 import { useAuth } from '../contexts/AuthContext'
 import ProductCard from '../components/ProductCard'
+import ProductReviews from '../components/ProductReviews'
 
 const ProductDetail = () => {
   const { id } = useParams()
@@ -305,6 +306,11 @@ const ProductDetail = () => {
           </div>
         </div>
       )}
+
+      {/* Product Reviews */}
+      <div className="border-t pt-12">
+        <ProductReviews productId={product._id} />
+      </div>
     </div>
   )
 }

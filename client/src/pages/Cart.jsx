@@ -31,7 +31,7 @@ const Cart = () => {
   }
 
   const handleRemoveItem = (productId) => {
-    removeFromCart.mutate(productId)
+    removeFromCart.mutate({ productId })
   }
 
   const handleApplyCoupon = () => {

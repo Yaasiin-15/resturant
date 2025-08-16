@@ -94,8 +94,10 @@ export const createOrder = async (req, res) => {
       shippingAddress,
       billingAddress: billingAddress || shippingAddress,
       payment: {
-        method: paymentMethod,
-        status: 'pending'
+        provider: paymentMethod,
+        status: 'pending',
+        amount: total,
+        currency: 'USD'
       },
       totals: {
         subtotal,

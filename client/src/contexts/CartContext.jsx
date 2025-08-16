@@ -128,38 +128,38 @@ export const CartProvider = ({ children }) => {
   })
 
   const addToCart = (productId, quantity = 1, variantKey = null) => {
-    addToCartMutation.mutate({ productId, quantity, variantKey })
+    return addToCartMutation.mutate({ productId, quantity, variantKey })
   }
 
   const updateCartItem = (productId, quantity, variantKey = null) => {
-    updateCartItemMutation.mutate({ productId, quantity, variantKey })
+    return updateCartItemMutation.mutate({ productId, quantity, variantKey })
   }
 
   const removeFromCart = (productId, variantKey = null) => {
-    removeFromCartMutation.mutate({ productId, variantKey })
+    return removeFromCartMutation.mutate({ productId, variantKey })
   }
 
   const clearCart = () => {
-    clearCartMutation.mutate()
+    return clearCartMutation.mutate()
   }
 
   const applyCoupon = (code) => {
-    applyCouponMutation.mutate(code)
+    return applyCouponMutation.mutate(code)
   }
 
   const removeCoupon = () => {
-    removeCouponMutation.mutate()
+    return removeCouponMutation.mutate()
   }
 
   const value = {
     cart,
     cartLoading,
-    addToCart,
-    updateCartItem,
-    removeFromCart,
-    clearCart,
-    applyCoupon,
-    removeCoupon,
+    addToCart: addToCartMutation,
+    updateCartItem: updateCartItemMutation,
+    removeFromCart: removeFromCartMutation,
+    clearCart: clearCartMutation,
+    applyCoupon: applyCouponMutation,
+    removeCoupon: removeCouponMutation,
     cartItemCount: cart?.totalItems || 0,
     cartTotal: cart?.total || 0,
   }

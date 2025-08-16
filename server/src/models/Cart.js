@@ -114,7 +114,12 @@ cartSchema.methods.addItem = async function(productId, quantity = 1, variantKey 
   
   if (existingItemIndex > -1) {
     // Update quantity
-    this.items[existingItemIndex].quantity += quantity;
+    const newQuantity = this.items[existingItemIndex].quantity + quantity;
+    if (newQuantity > product.countInStock) {
+      throw new Error('Insufficient stock');
+    }
+    this.items[existingItemIndex].quantity = newQuantity;
+    this.items[existingItemIndex].price = price; // Update price in case it changed
   } else {
     // Add new item
     this.items.push({
